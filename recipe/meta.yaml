@@ -10,8 +10,9 @@ source:
   sha256: 4f16335cd8c0a31a70e304ce87148898d9dd2d4aebd4c7bda047bc456f70da48
 
 build:
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  skip: true  # [py<39]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -44,7 +45,7 @@ about:
   description: |
     A conda plugin that provides AI assistance to conda workflows.
   doc_url: https://anaconda.github.io/assistant-sdk/conda
-  dev_url: https://github.com/anaconda/assistant-sdk
+  dev_url: https://github.com/anaconda/assistant-sdk/tree/main/libs/anaconda-assistant-conda
   home: https://anaconda.com
   license: BSD-3-Clause
   license_family: BSD
