@@ -10,19 +10,19 @@ source:
   sha256: 4f16335cd8c0a31a70e304ce87148898d9dd2d4aebd4c7bda047bc456f70da48
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  skip: true  # [py<39]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python
     - hatchling
     - hatch-vcs >=0.3
     - setuptools-scm >=7.1
     - pip
   run:
-    - python >={{ python_min }}
+    - python
     - anaconda-cli-base >=0.5
     - anaconda-assistant-sdk >=0.4
     - anaconda-auth >=0.8
@@ -38,15 +38,17 @@ test:
   commands:
     - pip check
   requires:
-    - python {{ python_min }}
     - pip
 
 about:
   summary: The Anaconda Assistant conda plugin
+  description: |
+    A conda plugin that provides AI assistance to conda workflows.
   doc_url: https://anaconda.github.io/assistant-sdk/conda
-  dev_url: https://github.com/anaconda/assistant-sdk
+  dev_url: https://github.com/anaconda/assistant-sdk/tree/main/libs/anaconda-assistant-conda
   home: https://anaconda.com
   license: BSD-3-Clause
+  license_family: BSD
   license_file: LICENSE
 
 extra:
